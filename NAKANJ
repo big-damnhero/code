@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void f(int x,int y,pair<int,int> &p,queue<pair<int,int> > &qu,vector<vector<bool> > &vis,vector<vector<int> > &level){
+	if(x<0||y<0) return;
+	if(x>=8||y>=8) return;
+	if(vis[x][y]) return;
+	vis[x][y]=true;
+	level[x][y]=level[p.first][p.second]+1;
+	qu.push(make_pair(x,y));
+}
+
+int BFS(int x1,int y1,int x2,int y2){
+	vector<vector<bool> > vis(8,vector<bool>(8,false));
+	vector<vector<int> > level(8,vector<int>(8,0));
+	queue<pair<int,int> > qu;
+	qu.push(make_pair(x1,y1));
+	vis[x1][y1] = true;
+	while(!qu.empty()){
+		pair<int,int> p = qu.front();
+		int x = p.first;
+		int y = p.second;
+		qu.pop();
+		f(x+2,y-1,p,qu,vis,level);
+		f(x+2,y+1,p,qu,vis,level);
+		f(x+1,y-2,p,qu,vis,level);
+		f(x+1,y+2,p,qu,vis,level);
+		f(x-1,y-2,p,qu,vis,level);
+		f(x-1,y+2,p,qu,vis,level);
+		f(x-2,y+1,p,qu,vis,level);
+		f(x-2,y-1,p,qu,vis,level);
+	}
+	return level[x2][y2];
+}
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		char a1,a2;
+		int x1,y1,x2,y2;
+		cin>>a1>>y1>>a2>>y2;
+		x1 = a1-96;
+		x2 = a2-96;
+	//	cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<"\n";
+		cout<<BFS(x1-1,y1-1,x2-1,y2-1)<<"\n";
+	}
+	return 0;
+}
