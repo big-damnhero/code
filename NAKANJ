@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+//spoj.com/problems/NAKANJ	
 void f(int x,int y,pair<int,int> &p,queue<pair<int,int> > &qu,vector<vector<bool> > &vis,vector<vector<int> > &level){
 	if(x<0||y<0) return;
 	if(x>=8||y>=8) return;
