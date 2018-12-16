@@ -1,2 +1,2 @@
 # code
-coding_questions
+Different coding Questions solved on different platform
